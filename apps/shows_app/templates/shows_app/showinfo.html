@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Create</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <a href="/shows">Go Back</a>
+        <h1>TV SHOW {{ show.id }}</h1>
+        <p>Title: {{ show.title }}</p>
+        <p>Network: {{ show.network }}</p>
+        <p>Release Date: {{ show.release_date }}</p>
+        <p>Description: {{ show.desc }}</p>
+        <p>Last Updated: {{ show.updated_at }}</p>
+        <a href="/shows/{{show.id}}/edit">Edit</a>
+        <a href="/shows/{{show.id}}/destroy">Delete</a>
+    </body>
+</html>

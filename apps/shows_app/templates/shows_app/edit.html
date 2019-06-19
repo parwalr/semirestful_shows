@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="utf-8">
+        <title>Update</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <a href="/shows">Go Back</a>
+        <h1>Edit Show {{ show.id }} </h1>
+        {% if messages %}
+        <ul class="messages" style="color:red">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="/shows/{{show.id}}/update" method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputtitle">Title</label>
+              <input type="text" class="form-control" id="exampleInputtitle" value="{{ show.title }}" name="title">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputnetwork">Network</label>
+              <input type="text" class="form-control" id="exampleInputnetwork" value="{{ show.network }}" name="network">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputdate">Release Date</label>
+                <input type="date" class="form-control" id="exampleInputdate" value="{{ show.release_date|date:'Y-m-d' }}" name="release_date">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" value="{{ show.desc }}" name="desc">{{ show.desc }}</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+        <a href="/shows/{{show.id}}">Go to Show</a>
+    </body>
+</html>

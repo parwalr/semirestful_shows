@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Create</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'shows_app/css/style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>All Shows</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Release Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for show in all_shows %}
+                <tr>
+                    <td>{{ show.id }}</td>
+                    <td>{{ show.title }}</td>
+                    <td>{{ show.release_date }}</td>
+                    <td>
+                        <a href="/shows/{{show.id}}/edit">Edit</a>
+                        <a href="/shows/{{show.id}}">Show</a>
+                        <a href="/shows/{{show.id}}/destroy">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <a href='shows/new'>Add a New Show</a>
+        </table>
+    </body>
+</html>
